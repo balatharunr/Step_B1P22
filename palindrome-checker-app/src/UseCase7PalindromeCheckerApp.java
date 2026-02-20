@@ -1,9 +1,8 @@
 import java.util.Scanner;
-import java.util.Stack;
-import java.util.Queue;
+import java.util.Deque;
 import java.util.LinkedList;
 
-public class UseCase6PalindromeCheckerApp {
+public class UseCase7PalindromeCheckerApp {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Welcome to the Palindrome Checker Management System\n" +
@@ -11,15 +10,15 @@ public class UseCase6PalindromeCheckerApp {
                 "System initialized successfully.");
         System.out.print("Input text: ");
         String input = sc.next();
-        Stack<Character> stack = new Stack<>();
-        Queue<Character> queue = new LinkedList<>();
+        Deque<Character> deque = new LinkedList<>();
         boolean isPalindrome = true;
         for (char ch : input.toCharArray()) {
-            stack.push(ch);
-            queue.add(ch);
+            deque.addLast(ch);
         }
-        while (!stack.isEmpty()) {
-            if (!stack.pop().equals(queue.remove())) {
+        while (deque.size() > 1) {
+            char front = deque.removeFirst();
+            char rear = deque.removeLast();
+            if (front != rear) {
                 isPalindrome = false;
                 break;
             }
