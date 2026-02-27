@@ -1,6 +1,6 @@
 import java.util.LinkedList;
 
-public class UC8PalindromeCheckerApp {
+public class UseCase8PalindromeCheckerApp {
     public static void main(String[] args) {
         String input = "level";
         LinkedList<Character> list = new LinkedList<>();
