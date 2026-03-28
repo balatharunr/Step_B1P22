@@ -13,6 +13,20 @@ class Transaction{
 }
 
 public class TransactionFeeSorting{
+    public static void printFee(ArrayList<Transaction> list){
+        System.out.print("BubbleSort (fees): ");
+        for(Transaction t : list){
+            System.out.print(t.id + ":" + t.fee + " ");
+        }
+        System.out.println();
+    }
+    public static void printFeeTime(ArrayList<Transaction> list){
+        System.out.print("InsertionSort(fee+ts): ");
+        for(Transaction t : list){
+            System.out.print(t.id + ":" + t.fee + "@" + t.timestamp + " ");
+        }
+        System.out.println();
+    }
     public static void bubbleSortByFee(ArrayList<Transaction> list){
         boolean swapped = true;
         while(swapped){
@@ -27,14 +41,15 @@ public class TransactionFeeSorting{
             }
         }
     }
-    public static void printFee(ArrayList<Transaction> list){
-        for(Transaction t : list){
-            System.out.print(t.id + ":" + t.fee + " ");
-        }
-    }
-    public static void printFeeTime(ArrayList<Transaction> list){
-        for(Transaction t : list){
-            System.out.print(t.id + ":" + t.fee + "@" + t.timestamp + " ");
+    public static void insertionSort(ArrayList<Transaction> list){
+        for(int i = 1; i < list.size(); i++){
+            Transaction key = list.get(i);
+            int j = i-1;
+            while(j >= 0 && (list.get(j).fee > key.fee || (list.get(j).fee == key.fee && list.get(j).timestamp.compareTo(key.timestamp) > 0))){
+                list.set(j+1, list.get(j));
+                j--;
+            }
+            list.set(j+1, key);
         }
     }
     public static void main(String[] args) {
@@ -44,5 +59,7 @@ public class TransactionFeeSorting{
         list.add(new Transaction("id3", 5.0, "10:15"));
         bubbleSortByFee(list);
         printFee(list);
+        insertionSort(list);
+        printFeeTime(list);
     }
 }
