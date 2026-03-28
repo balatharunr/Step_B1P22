@@ -27,6 +27,20 @@ public class TransactionFeeSorting{
         }
         System.out.println();
     }
+    public static void printOutliers(ArrayList<Transaction> list){
+        System.out.print("High-fee outliers: ");
+        boolean found = false;
+        for(Transaction t : list){
+            if(t.fee > 50){
+                System.out.print(t.id + ":" + t.fee + " ");
+                found = true;
+            }
+        }
+        if(!found){
+            System.out.print("none");
+        }
+        System.out.println();
+    }
     public static void bubbleSortByFee(ArrayList<Transaction> list){
         boolean swapped = true;
         while(swapped){
@@ -57,9 +71,15 @@ public class TransactionFeeSorting{
         list.add(new Transaction("id1", 10.5, "10:00"));
         list.add(new Transaction("id2", 25.0, "09:30"));
         list.add(new Transaction("id3", 5.0, "10:15"));
-        bubbleSortByFee(list);
-        printFee(list);
-        insertionSort(list);
-        printFeeTime(list);
+        int n = list.size();
+        if (n <= 100) {
+            bubbleSortByFee(list);
+            printFee(list);
+        } 
+        else if (n <= 1000) {
+            insertionSort(list);
+            printFeeTime(list);
+        }
+        
     }
 }
