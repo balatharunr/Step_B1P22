@@ -9,9 +9,7 @@ class Transaction{
         this.id = id;
         this.fee = fee;
         this.timestamp = timestamp;
-    }
-
-    
+    }    
 }
 
 public class TransactionFeeSorting{
@@ -32,6 +30,11 @@ public class TransactionFeeSorting{
     public static void printFee(ArrayList<Transaction> list){
         for(Transaction t : list){
             System.out.print(t.id + ":" + t.fee + " ");
+        }
+    }
+    public static void printFeeTime(ArrayList<Transaction> list){
+        for(Transaction t : list){
+            System.out.print(t.id + ":" + t.fee + "@" + t.timestamp + " ");
         }
     }
     public static void main(String[] args) {
